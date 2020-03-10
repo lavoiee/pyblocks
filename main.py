@@ -1,7 +1,5 @@
 import hashlib
 import json
-import colors
-
 
 class Block():
 
@@ -11,6 +9,7 @@ class Block():
         self.transaction = transaction
         self.prevhash = prevhash
         self.hash = self.calchash()
+        self.blocknumber = 0
 
     def calchash(self):
         block_string = json.dumps({"nonce": self.nonce, "tstamp": self.tstamp,
@@ -19,11 +18,12 @@ class Block():
 
     def __str__(self):
 
-        string = "\033[01m" + "\033[32m" + "nonce :" + "\033[0m" + str(self.nonce) + "\n"
-        string += "\033[01m" + "\033[32m" + "tstamp :" + "\033[0m" + str(self.tstamp) + "\n"
-        string += "\033[01m" + "\033[32m" + "transaction :" + "\033[0m" + str(self.transaction) + "\n"
-        string += "\033[01m" + "\033[32m" + "prevhash: " + "\033[36m" + str(self.prevhash) + "\n"
-        string += "\033[01m" + "\033[32m" + "hash: " + "\033[36m" + str(self.hash) + "\n"
+        string = "\033[01m" + "\033[32m" + "Block Number :" + "\033[0m" + str(self.blocknumber) + "\n"
+        string += "\033[01m" + "\033[32m" + "Nonce :" + "\033[0m" + str(self.nonce) + "\n"
+        string += "\033[01m" + "\033[32m" + "Time Stamp :" + "\033[0m" + str(self.tstamp) + "\n"
+        string += "\033[01m" + "\033[32m" + "Transaction :" + "\033[0m" + str(self.transaction) + "\n"
+        string += "\033[01m" + "\033[32m" + "Previous Hash: " + "\033[36m" + str(self.prevhash) + "\n"
+        string += "\033[01m" + "\033[32m" + "Hash: " + "\033[36m" + str(self.hash) + "\n"
 
         return string
 
@@ -33,7 +33,7 @@ class BlockChain():
         self.chain = [self.generateGenesisBlock(), ]
 
     def generateGenesisBlock(self):
-        return Block(1, "03/09/2020", "In order for a slave to be free he must leave the plantation")
+        return Block(1, "03/09/2020", "In order for a slave to be free he must leave the plantation.")
 
     def getLastBlock(self):
         return self.chain[-1]
@@ -41,6 +41,7 @@ class BlockChain():
     def addBlock(self, newBlock):
         newBlock.prevhash = self.getLastBlock().hash
         newBlock.hash = newBlock.calchash()
+        newBlock.blocknumber = len(self.chain)
         self.chain.append(newBlock)
 
 
