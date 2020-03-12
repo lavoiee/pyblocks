@@ -3,7 +3,6 @@ from Model.blocks import Block
 
 
 class Controller:
-    blockChain = BlockChain()
     blockFund = BlockChain()
 
     blockFund.addBlock(Block(1, "03/09/2020", 1100))
