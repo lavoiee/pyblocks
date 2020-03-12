@@ -1,3 +1,3 @@
-from Controller import controller as Controller
+from Controller.controller import Controller
 
 chainControl = Controller()

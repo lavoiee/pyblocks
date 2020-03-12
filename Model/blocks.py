@@ -1,7 +1,8 @@
 import hashlib
 import json
 
-class Block():
+
+class Block:
 
     def __init__(self, nonce, tstamp, transaction, prevhash=''):
         self.nonce = nonce
