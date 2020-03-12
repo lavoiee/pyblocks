@@ -1,4 +1,4 @@
-from Model.blocks import Block
+from Model.block import Block
 
 
 class BlockChain:

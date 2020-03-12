@@ -1,5 +1,5 @@
 from Model.blockchain import BlockChain
-from Model.blocks import Block
+from Model.block import Block
 
 
 class Controller:
